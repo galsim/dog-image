@@ -1,6 +1,6 @@
 <template lang="pug">
   <div class="home">
-      h1 Hello, world!
+      p Hello, world!
       p {{ getCount }}
       button(@click="increment") Увеличить
   </div>

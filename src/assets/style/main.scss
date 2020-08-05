@@ -1,0 +1,17 @@
+body {
+    height: 100vh;
+    background: linear-gradient(180deg, #1B1A1F 0%, #111013 99.09%);
+}
+
+a, a:visited, a:hover, a:link, a:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+

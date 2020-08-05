@@ -1,17 +1,17 @@
-<template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+<template lang="pug">
+  #app
+    navHeader
+    .container
+      router-view
   </div>
 </template>
 
-<style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+<script>
+import navHeader from '@/components/navHeader'
+
+export default {
+  components: {
+    navHeader
   }
-</style>
+}
+</script>
