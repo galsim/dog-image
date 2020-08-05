@@ -1,8 +1,8 @@
-<template>
+<template lang="pug">
   <div class="home">
-      <h1>Hello, world!</h1>
-      <p>{{ getCount }}</p>
-      <button @click="increment">Увеличить</button>
+      h1 Hello, world!
+      p {{ getCount }}
+      button(@click="increment") Увеличить
   </div>
 </template>
 
@@ -25,3 +25,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  @import '@/assets/style/breakpoints.scss';
+  @import '@/assets/style/mixins.scss';
+  h1 {
+    font-size: 46px;
+    @include lg {
+      font-size: 16px;
+    }
+  }
+</style>
