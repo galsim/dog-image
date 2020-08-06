@@ -1,13 +1,13 @@
 <template lang="pug">
   #app
-    navHeader
+    nav-header
     .container
       router-view
   </div>
 </template>
 
 <script>
-import navHeader from '@/components/navHeader'
+import navHeader from '@/components/blocks/navHeader'
 
 export default {
   components: {
