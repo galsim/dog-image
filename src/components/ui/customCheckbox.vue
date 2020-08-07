@@ -44,6 +44,7 @@ export default {
   }
 
   &__label {
+    line-height: 27px;
     & + .custom-checkbox__input {
       margin-left: 15px;
     }

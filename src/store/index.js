@@ -1,20 +1,29 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    count: 0
+    breedList: []
   },
   mutations: {
-    increment (state) {
-      state.count++
+    setBreedList (state, payload) {
+      state.breedList = payload
+    }
+  },
+  actions: {
+    setBreedList ({ commit }) {
+      axios
+        .get('https://dog.ceo/api/breeds/list/all')
+        .then(res => commit('setBreedList', Object.keys(res.data.message)))
+        .catch(e => console.error(e))
     }
   },
   getters: {
-    getCount (state) {
-      return state.count
+    getBreedList (state) {
+      return state.breedList
     }
   }
 })
