@@ -4,6 +4,7 @@
        :height="height"
        viewBox="0 0 24 24"
        :aria-labelledby="iconName"
+       @click="$emit('click')"
        class="svg-icon"
        role="presentation"
   >

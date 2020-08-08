@@ -2,7 +2,7 @@
   .header
     .container.flex.ai-center.jc-between
       router-link.header__title(to="/")
-      router-link.header__favorite-link.flex.ai-center(to="/favorite")
+      router-link.header__favorite-link.flex.ai-center(to="/favorites")
         | Избранные пёсели
         icon-base
           icon-heart

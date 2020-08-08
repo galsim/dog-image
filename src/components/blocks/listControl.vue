@@ -21,10 +21,10 @@
           .list-control__alphabet__word(
             v-for="word in breedAlphabet"
             @click="activeWord = word"
-            key="word"
+            :key="word"
             :class="{'active': word === activeWord}") {{ word | firstUpperCase }}
       .list-control__alphabet__breeds.flex.ai-center.wrap
-        router-link.list-control__breed(v-for="breed in filterList" :to="`/${breed}`") {{ breed | firstUpperCase}}
+        router-link.list-control__breed(v-for="breed in filterList" :to="`/${breed}`" :key="breed") {{ breed | firstUpperCase}}
 </template>
 
 <script>
