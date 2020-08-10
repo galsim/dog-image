@@ -176,7 +176,10 @@ export default {
       font-size: 20px;
       line-height: 28px;
       cursor: pointer;
-
+      @include sm {
+        font-size: 25px;
+        padding: 7px
+      }
       &.active {
         color: $white;
         opacity: 0.8
@@ -184,6 +187,9 @@ export default {
 
       &:not(:last-child) {
         margin-right: 10px;
+        @include sm {
+          margin-right: 0;
+        }
       }
     }
 
