@@ -11,6 +11,8 @@ Vue.filter('firstUpperCase', function (value) {
   return value.toString()[0].toUpperCase() + value.toString().slice(1)
 })
 
+export const eventBus = new Vue()
+
 new Vue({
   router,
   store,

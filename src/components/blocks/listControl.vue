@@ -1,6 +1,6 @@
 <template lang="pug">
   .list-control
-    .flex.ai-center.jc-between.wrap
+    .list-control__elements.flex.ai-center.jc-between.wrap
       .list-control__left.flex.ai-center
         .list-control__left__breed-select.flex.ai-center.jc-between(
           @click="showList = !showList"
@@ -90,12 +90,26 @@ export default {
 
 <style scoped lang="scss">
 @import '@/assets/style/variables.scss';
+@import '@/assets/style/mixins.scss';
 
 .list-control {
   min-height: 120px;
   padding: 50px 0;
 
+  @include sm {
+    padding: 25px 0;
+    min-height: 75px;
+  }
+
+  &__elements {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
   &__left {
+    @include sm {
+      flex-basis: 100%;
+    }
     &__breed-select {
       color: $white;
       position: relative;
@@ -179,6 +193,11 @@ export default {
       .list-control__breed {
         margin-right: 15px;
         margin-bottom: 17px;
+
+        @include sm {
+          margin-right: 10px;
+          margin-bottom: 10px;
+        }
       }
     }
   }

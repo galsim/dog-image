@@ -5,18 +5,24 @@
     )
     .card__gradient
     icon-base(width="30" height="30" @click="addToFavorites")
-      icon-heart
+      icon-heart-fill(v-if="isFavorite")
+      icon-heart(v-else)
     .card__breed {{ breed | firstUpperCase }}
 </template>
 
 <script>
 import IconBase from '@/components/icons/IconBase'
 import IconHeart from '@/components/icons/IconHeart'
+import IconHeartFill from '@/components/icons/IconHeartFill'
+import { eventBus } from '@/main'
 
 export default {
   components: {
-    IconBase, IconHeart
+    IconBase, IconHeart, IconHeartFill
   },
+  data: () => ({
+    isFavorite: false
+  }),
   props: {
     image: {
       type: String
@@ -39,14 +45,26 @@ export default {
   },
   methods: {
     addToFavorites () {
-      console.log('add')
+      if (this.isFavorite) {
+        window.localStorage.removeItem(this.image)
+        this.isFavorite = false
+      } else {
+        window.localStorage.setItem(this.image, this.image)
+        this.isFavorite = true
+      }
+
+      eventBus.$emit('updateLocalStorage')
     }
+  },
+  created () {
+    this.isFavorite = !!window.localStorage.getItem(this.image)
   }
 }
 </script>
 
 <style scoped lang="scss">
 @import '@/assets/style/variables.scss';
+@import '@/assets/style/mixins.scss';
 
 .card {
   position: relative;
@@ -83,6 +101,12 @@ export default {
     font-size: 25px;
     line-height: 28px;
     color: $white;
+
+    @include sm {
+      font-size: 20px;
+      right: 20px;
+      bottom: 20px;
+    }
   }
 
   .svg-icon {
@@ -92,6 +116,11 @@ export default {
     position: absolute;
     left: 25px;
     top: 25px;
+
+    @include sm {
+      left: 15px;
+      top: 15px;
+    }
   }
 }
 </style>

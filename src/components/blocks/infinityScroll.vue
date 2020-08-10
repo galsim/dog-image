@@ -27,12 +27,18 @@ export default {
       }, DELAY)
     }
   },
-  mounted () {
-    document.addEventListener('scroll', () => {
+  methods: {
+    scrollController () {
       if (document.body.scrollHeight - window.scrollY - document.documentElement.clientHeight < 200) {
         this.throttledEmit()
       }
-    })
+    }
+  },
+  mounted () {
+    document.addEventListener('scroll', this.scrollController)
+  },
+  beforeDestroy () {
+    document.removeEventListener('scroll', this.scrollController)
   }
 }
 </script>

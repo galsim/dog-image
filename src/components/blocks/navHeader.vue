@@ -3,7 +3,7 @@
     .container.flex.ai-center.jc-between
       router-link.header__title(to="/")
       router-link.header__favorite-link.flex.ai-center(to="/favorites")
-        | Избранные пёсели
+        span Избранные пёсели
         icon-base
           icon-heart
 </template>
@@ -22,6 +22,7 @@ export default {
 
 <style lang="scss">
 @import '@/assets/style/variables.scss';
+@import '@/assets/style/mixins.scss';
 
 .header {
   background: #151419;
@@ -44,6 +45,16 @@ export default {
     }
     .svg-icon {
       margin-left: 10px;
+      @include sm {
+        width: 35px;
+        height: 35px;
+      }
+    }
+
+    span {
+      @include sm {
+        display: none
+      }
     }
   }
 }
