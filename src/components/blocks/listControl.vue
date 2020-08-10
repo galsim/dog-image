@@ -13,7 +13,7 @@
           icon-base(width="14" height="14")
             icon-cross
           span {{ currentBreed | firstUpperCase }}
-      custom-checkbox(v-model="test" label="Сортировка по алфавиту" )
+      custom-checkbox(v-if="!hideSortCheckbox" v-model="alphabetSort" label="Сортировка по алфавиту" @input="e => $emit('sort', alphabetSort)")
     .list-control__breed-list(v-if="showList")
       .list-control__breed.active(v-if="isHomePage") Все песели
       .list-control__alphabet
@@ -35,8 +35,14 @@ import IconCross from '@/components/icons/IconCross'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
+  props: {
+    hideSortCheckbox: {
+      type: Boolean,
+      default: false
+    }
+  },
   data: () => ({
-    test: false,
+    alphabetSort: false,
     showList: false,
     activeWord: 'a'
   }),

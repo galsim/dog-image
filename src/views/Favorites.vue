@@ -4,6 +4,8 @@
 
 <script>
 export default {
-  name: 'Favorite'
+  mounted () {
+    console.log(window.localStorage)
+  }
 }
 </script>

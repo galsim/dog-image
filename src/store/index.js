@@ -7,7 +7,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     breedList: [],
-    dogImageList: []
+    dogImageList: [],
+    dogByBreedImageList: []
   },
   mutations: {
     setBreedList (state, payload) {
@@ -15,6 +16,15 @@ const store = new Vuex.Store({
     },
     setDogImageList (state, payload) {
       state.dogImageList = state.dogImageList.concat(payload)
+    },
+    setDogByBreedImageList (state, payload) {
+      state.dogByBreedImageList = state.dogByBreedImageList.concat(payload)
+    },
+    clearDogImageList (state) {
+      state.dogImageList = []
+    },
+    clearDogByBreedImageList (state) {
+      state.dogByBreedImageList = []
     }
   },
   actions: {
@@ -25,6 +35,10 @@ const store = new Vuex.Store({
     async setDogImageList ({ commit }) {
       const list = await axios.get('https://dog.ceo/api/breeds/image/random/20')
       commit('setDogImageList', list.data.message)
+    },
+    async setDogByBreedImageList ({ commit }, breed) {
+      const list = await axios.get(`https://dog.ceo/api/breed/${breed}/images/random/20`)
+      commit('setDogByBreedImageList', list.data.message)
     }
   },
   getters: {
@@ -33,6 +47,9 @@ const store = new Vuex.Store({
     },
     getDogImageList (state) {
       return state.dogImageList
+    },
+    getDogByBreedImageList (state) {
+      return state.dogByBreedImageList
     }
   }
 })

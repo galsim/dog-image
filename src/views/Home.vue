@@ -1,6 +1,6 @@
 <template lang="pug">
   .home-page.page
-    list-control
+    list-control(@sort="e => alphabetSort = e")
     grid-list(
       :items="dogList"
       )
@@ -10,12 +10,12 @@
 <script>
 import listControl from '@/components/blocks/listControl'
 import gridList from '@/components/blocks/gridList'
-import { mapGetters, mapActions } from 'vuex'
 import infinityScroll from '@/components/blocks/infinityScroll'
-
+import { mapMutations } from 'vuex'
 export default {
   data: () => ({
-    loading: true
+    loading: true,
+    alphabetSort: false
   }),
   components: {
     listControl,
@@ -23,23 +23,26 @@ export default {
     infinityScroll
   },
   computed: {
-    ...mapGetters({
-      dogList: 'getDogImageList'
-    })
+    dogList () {
+      if (this.alphabetSort) {
+        return this.$store.getters.getDogImageList.slice().sort()
+      }
+      return this.$store.getters.getDogImageList
+    }
   },
   methods: {
-    ...mapActions([
-      'setDogImageList'
+    ...mapMutations([
+      'clearDogImageList'
     ]),
     async setDogImageListLoading () {
       this.loading = true
-      await this.setDogImageList()
+      await this.$store.dispatch('setDogImageList')
       this.loading = false
     }
   },
   async created () {
+    this.clearDogImageList()
     await this.setDogImageListLoading()
-    this.loading = false
   }
 }
 </script>
