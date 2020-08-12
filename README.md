@@ -1,4 +1,4 @@
-# dog-test
+# dog-image
 
 ## Project setup
 ```
